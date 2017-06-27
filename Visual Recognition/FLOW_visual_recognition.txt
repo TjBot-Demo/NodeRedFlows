@@ -1,0 +1,284 @@
+[
+    {
+        "id": "38a02468.a022dc",
+        "type": "tab",
+        "label": "Visual Recognition"
+    },
+    {
+        "id": "c6441d82.23097",
+        "type": "visual-recognition-util-v3",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "apikey": "",
+        "image-feature": "createClassifier",
+        "x": 595.5,
+        "y": 273,
+        "wires": [
+            [
+                "1fac2956.43bdbf"
+            ]
+        ]
+    },
+    {
+        "id": "bd94fe3f.ad42f8",
+        "type": "visual-recognition-v3",
+        "z": "38a02468.a022dc",
+        "name": "recognize visualy",
+        "apikey": "",
+        "image-feature": "classifyImage",
+        "lang": "en",
+        "x": 439.5,
+        "y": 378,
+        "wires": [
+            [
+                "afda1cfc.0bf23"
+            ]
+        ]
+    },
+    {
+        "id": "17b589aa.d76c8e",
+        "type": "fileinject",
+        "z": "38a02468.a022dc",
+        "name": "File",
+        "x": 78.5,
+        "y": 273,
+        "wires": [
+            [
+                "c2b5c0b6.6996a"
+            ]
+        ]
+    },
+    {
+        "id": "1fac2956.43bdbf",
+        "type": "debug",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 793.5,
+        "y": 273,
+        "wires": []
+    },
+    {
+        "id": "534452d5.5638ec",
+        "type": "inject",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90.5,
+        "y": 66,
+        "wires": [
+            [
+                "47582208.ccd39c"
+            ]
+        ]
+    },
+    {
+        "id": "47582208.ccd39c",
+        "type": "visual-recognition-util-v3",
+        "z": "38a02468.a022dc",
+        "name": "List all classifiers",
+        "apikey": "",
+        "image-feature": "retrieveClassifiersList",
+        "x": 290,
+        "y": 66,
+        "wires": [
+            [
+                "3219ef09.b7128"
+            ]
+        ]
+    },
+    {
+        "id": "3219ef09.b7128",
+        "type": "debug",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 473,
+        "y": 66,
+        "wires": []
+    },
+    {
+        "id": "d61c57a0.69fb58",
+        "type": "comment",
+        "z": "38a02468.a022dc",
+        "name": "List all of my classifiers",
+        "info": "",
+        "x": 105,
+        "y": 24,
+        "wires": []
+    },
+    {
+        "id": "ae397368.82666",
+        "type": "comment",
+        "z": "38a02468.a022dc",
+        "name": "DELETE all my classifiers!!!!",
+        "info": "",
+        "x": 127,
+        "y": 135,
+        "wires": []
+    },
+    {
+        "id": "d8b6ad43.d8fdf",
+        "type": "debug",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 474.5,
+        "y": 183,
+        "wires": []
+    },
+    {
+        "id": "5a4b84be.4fd8cc",
+        "type": "visual-recognition-util-v3",
+        "z": "38a02468.a022dc",
+        "name": "Delete all classifiers",
+        "apikey": "",
+        "image-feature": "deleteAllClassifiers",
+        "x": 291.5,
+        "y": 183,
+        "wires": [
+            [
+                "d8b6ad43.d8fdf"
+            ]
+        ]
+    },
+    {
+        "id": "3de1d96e.eca516",
+        "type": "inject",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 92,
+        "y": 183,
+        "wires": [
+            [
+                "5a4b84be.4fd8cc"
+            ]
+        ]
+    },
+    {
+        "id": "2de5ace3.2e1404",
+        "type": "function",
+        "z": "38a02468.a022dc",
+        "name": "inputparameters",
+        "func": "var mp=msg.payload[0].payload;\nvar hp=msg.payload[1].payload;\nvar mc=msg.payload[2].payload;\nvar neg=msg.payload[3].payload;\nvar params = [];\nparams[\"name\"]=\"MyShop\";\nparams[\"MobilePhones_positive_examples\"] = mp;\nparams[\"HeadPhones_positive_examples\"] = hp;\nparams[\"MatchboxCars_positive_examples\"] = mc;\nparams[\"negative_examples\"] = neg;\nmsg.params=params;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 372.5,
+        "y": 273,
+        "wires": [
+            [
+                "c6441d82.23097"
+            ]
+        ]
+    },
+    {
+        "id": "c2b5c0b6.6996a",
+        "type": "merge",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "timeout": "10",
+        "x": 203,
+        "y": 273,
+        "wires": [
+            [
+                "2de5ace3.2e1404"
+            ]
+        ]
+    },
+    {
+        "id": "31ef7bc2.ec55d4",
+        "type": "comment",
+        "z": "38a02468.a022dc",
+        "name": "Create new classifier",
+        "info": "",
+        "x": 95,
+        "y": 230,
+        "wires": []
+    },
+    {
+        "id": "74b05293.2a60dc",
+        "type": "fileinject",
+        "z": "38a02468.a022dc",
+        "name": "File",
+        "x": 80,
+        "y": 378,
+        "wires": [
+            [
+                "faeabc16.90c3d"
+            ]
+        ]
+    },
+    {
+        "id": "faeabc16.90c3d",
+        "type": "change",
+        "z": "38a02468.a022dc",
+        "name": "inputparameters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "params[\"classifier_ids\"]",
+                "pt": "msg",
+                "to": "MyShop",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "params[\"owners\"]",
+                "pt": "msg",
+                "to": "OZ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 235,
+        "y": 378,
+        "wires": [
+            [
+                "bd94fe3f.ad42f8"
+            ]
+        ]
+    },
+    {
+        "id": "afda1cfc.0bf23",
+        "type": "debug",
+        "z": "38a02468.a022dc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 615,
+        "y": 378,
+        "wires": []
+    },
+    {
+        "id": "24868120.a31d3e",
+        "type": "comment",
+        "z": "38a02468.a022dc",
+        "name": "Classify an image",
+        "info": "",
+        "x": 85,
+        "y": 334,
+        "wires": []
+    }
+]
