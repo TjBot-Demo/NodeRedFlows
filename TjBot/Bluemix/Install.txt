@@ -1,0 +1,24 @@
+# TJBot Control Environment
+This Environment give the needed services and also the controller to support the TJBot and Alexa Use case. 
+
+## Install Node-Red (IoT Platform Starter)
+    - node-red 
+    - IoT Platform
+
+## Install Services 
+    - Conversation
+    - Language Translator
+    - Discovery
+    - Speech to Text
+    - Text to Speech
+    - Weather Company
+    - Visual Recognition
+
+## Add Services to Node-Rec Instance 
+    append all services to the controller instance
+
+## Config
+    - import TJBot-Conversion-DE.json as a workspace into conversation service
+    - configure IoT Platform with one device type and one device 
+    - import all tabs into node-red
+    - check the whole nodes of corrected credentials and deploy all flows of each tap
