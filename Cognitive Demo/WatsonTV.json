@@ -1,0 +1,7 @@
+[{ "id": "2d546986.89da46", "type": "http in", "z": "9029ae50.09b54", "name": "", "url": "/tele", "method": "get", "swaggerDoc": "", "x": 188, "y": 172, "wires": [
+        ["52cac989.48a128"]
+    ] }, { "id": "dd70c43b.e78288", "type": "http response", "z": "9029ae50.09b54", "name": "", "x": 790, "y": 174, "wires": [] }, { "id": "52cac989.48a128", "type": "http request", "z": "9029ae50.09b54", "name": "", "method": "GET", "ret": "txt", "url": "https://raw.githubusercontent.com/ibm-early-programs/watson-tv/master/tv.html", "tls": "", "x": 374, "y": 173, "wires": [
+        ["38df8aeb.d5b486"]
+    ] }, { "id": "38df8aeb.d5b486", "type": "function", "z": "9029ae50.09b54", "name": "", "func": "msg.headers = {'Content-Type':'text/html'};\n\nreturn msg;", "outputs": 1, "noerr": 0, "x": 576, "y": 173, "wires": [
+        ["dd70c43b.e78288"]
+    ] }]
